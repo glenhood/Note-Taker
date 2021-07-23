@@ -1,6 +1,6 @@
 # Express Note Taker
   
-  https://note-taker7777.herokuapp.com/notes.html
+  https://note-taker7777.herokuapp.com/
 
   [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
