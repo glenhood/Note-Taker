@@ -1,7 +1,6 @@
 const app = require("express").Router()
 const fs = require("fs")
 const db = require("../db/db.json")
-// const { v4: uuidv4 } = require('uuid');
 
 
 
@@ -18,31 +17,22 @@ app.get("/notes", (req, res) => {
       }
       
       // this writes the data from above to the db.json file.
-      dbfile.push(noteContent)
-      fs.writeFileSync("./db/db.json", JSON.stringify(dbfile))
+      db.push(noteContent)
+      fs.writeFileSync("./db/db.json", JSON.stringify(db))
       res.json(dbfile)
       })
-    
-  
-    //   let newNote = req.body;
-  //   newNote.id = uuidv4();
-  //   db.push(newNote);
-  //   fs.writeFileSync("./db/db.json", JSON.stringify(db), (err) => {
-  //     if(err) throw err;
-  //   });
-  //   res.send(db)
-  // })
-  
-  // app.delete("/notes/:id", (req, res) => {
-  //   db.forEach((note, i) => {
-  //     if (note.id === req.params.id) {db.splice(i, 1)}
-  //   })
-  
-  //   fs.writeFile("./db/db.json", JSON.stringify(db), (err) => {
-  //     if(err) throw err;
-  //   })
-  //   res.send(db)
-  // })
 
+      app.delete("/api/notes/:id", (req, res) => {
+        db.forEach((note, i) => {
+          if (note.id === req.params.id) {db.splice(i, 1)}
+        })
+      
+        // db.splice(db.indexOf(req.params.id), 1);
+        fs.writeFile("..db/db.json", JSON.stringify(db), (err) => {
+          if(err) throw err;
+        })
+        res.send(db)
+      })
+    
 
 module.exports = app
